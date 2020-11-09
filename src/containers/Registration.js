@@ -1,6 +1,5 @@
 import React from 'react';
-import PropType from 'prop-types';
-// import Api from '../../utils/api';
+import Api from '../utils/Api';
 
 export default class RegistrationUser extends React.Component {
   constructor(props) {
@@ -9,6 +8,7 @@ export default class RegistrationUser extends React.Component {
       email: '',
       name: '',
       phone: '',
+      subscribe: false,
       errors: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,30 +16,36 @@ export default class RegistrationUser extends React.Component {
   }
 
   handleSubmit(e) {
-    const { email, role, password, passwordConfirmation } = this.state;
+    const { name, email, phone, subscribe } = this.state;
 
     e.preventDefault();
-    // Api.newUser(email, role, password, passwordConfirmation)
-    //   .then((response) => {
-    //     if (response.data.errors) {
-    //       this.setState({ errors: response.data.errors });
-    //     }
-    //     if (response.data.user) {
-    //       localStorage.setItem('token', JSON.stringify(response.data.jwt));
-    //       handleSuccessfulAuth(response.data);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error('Registration error', error);
-    //   });
+    Api.newUser(name, email, phone, subscribe)
+      .then((response) => {
+        if (response.data.errors) {
+          this.setState({ errors: response.data.errors });
+        }
+        if (response) {
+          console.log('creado');
+        }
+      })
+      .catch((error) => {
+        console.error('Registration error', error);
+      });
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === 'subscribe') {
+      this.setState({
+        subscribe: this.state.subscribe === true ? false : true,
+      });
+      console.log(this.state.subscribe);
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   render() {
-    const { name, email, phone, errors } = this.state;
+    const { name, email, phone, subscribe, errors } = this.state;
     return (
       <div className="newForm">
         <form onSubmit={this.handleSubmit}>
@@ -49,7 +55,7 @@ export default class RegistrationUser extends React.Component {
               {error}
             </h2>
           ))}
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input
             id="name"
             type="text"
@@ -59,7 +65,7 @@ export default class RegistrationUser extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
@@ -68,7 +74,7 @@ export default class RegistrationUser extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label for="phone">Phone</label>
+          <label htmlFor="phone">Phone</label>
           <input
             type="text"
             name="phone"
@@ -77,13 +83,19 @@ export default class RegistrationUser extends React.Component {
             onChange={this.handleChange}
             required
           />
+
+          <input
+            id="cb"
+            type="checkbox"
+            name="subscribe"
+            value={subscribe}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="cb">Do you want to receive emails from us?</label>
+
           <button type="submit">Register</button>
         </form>
       </div>
     );
   }
 }
-
-RegistrationUser.propTypes = {
-  handleSuccessfulAuth: PropType.func,
-};
