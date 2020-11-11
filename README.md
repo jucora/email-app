@@ -42,44 +42,6 @@ This application connects to an API developed in Ruby on Rails, which can be fou
 
 Note: you can select another port if you wish. Just keep in mind that it has to be a different port from the API port.
 
-## How to create a Docker image to be run locally
-
-1. Make sure you are located in the root of the project and run the next command to generate the Docker images needed:
-
-<pre><code>docker-compose up -d</code></pre>
-
-2. You should see a similar output like the next one:
-
-<p align="center">
-  <img src ='src/img/create_services.jpg' alt='services running'>
-</p>
-
-3. You can also check the current processes by running the next command:
-
-<pre><code>docker-compose logs</code></pre>
-
-    And you should see something similar to this:
-
-<p align="center">
-  <img src ='src/img/services.jpg' alt='services running'>
-</p>
-
-4. You can run the next command to make sure all containers are running:
-
-<pre><code>docker-compose ps</code></pre>
-
-5. You should see a similar output like the next one:
-
-<p align="center">
-  <img src ='src/img/containers.jpg' alt='services running'>
-</p>
-
-    Note: make sure that each container states is UP.
-
-6. Run the next in your browser, and you are good to go:
-
-<pre><code>localhost:3000</code></pre>
-
 ## :computer: Library, Languages and technologies
 
 - React
