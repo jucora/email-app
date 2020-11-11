@@ -4,8 +4,8 @@ const Api = (() => {
   const newUser = (name, email, phone, subscribe) =>
     new Promise((resolve) => {
       axios
-        .post('http://localhost:3001/users', {
-          user: {
+        .post('http://localhost:3000/users', {
+          newUser: {
             name,
             email,
             phone,

@@ -9,7 +9,7 @@ export default class RegistrationUser extends React.Component {
       name: '',
       phone: '',
       subscribe: false,
-      errors: [],
+      formMessages: { type: '', content: [] },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,10 +22,16 @@ export default class RegistrationUser extends React.Component {
     Api.newUser(name, email, phone, subscribe)
       .then((response) => {
         if (response.data.errors) {
-          this.setState({ errors: response.data.errors });
-        }
-        if (response) {
-          console.log('creado');
+          this.setState({
+            formMessages: { type: 'error', content: response.data.errors },
+          });
+        } else if (response.data.newUser) {
+          this.setState({
+            formMessages: {
+              type: 'success',
+              content: ['User added successfully!'],
+            },
+          });
         }
       })
       .catch((error) => {
@@ -38,21 +44,20 @@ export default class RegistrationUser extends React.Component {
       this.setState({
         subscribe: this.state.subscribe === true ? false : true,
       });
-      console.log(this.state.subscribe);
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
   }
 
   render() {
-    const { name, email, phone, subscribe, errors } = this.state;
+    const { name, email, phone, subscribe, formMessages } = this.state;
     return (
       <div className="newForm">
         <form onSubmit={this.handleSubmit}>
           <h2>Add User</h2>
-          {errors.map((error) => (
-            <h2 key={error} className="error">
-              {error}
+          {formMessages.content.map((message) => (
+            <h2 key={message} className={formMessages.type}>
+              {message}
             </h2>
           ))}
           <label htmlFor="name">Name</label>
