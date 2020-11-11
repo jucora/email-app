@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+<h1 align="center">Email Subscriber App</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src ='src/img/preview.jpg' alt='Email Subscriber App image'>
+</p>
 
-## Available Scripts
+## Author
 
-In the project directory, you can run:
+:man: Julian Belmonte
 
-### `yarn start`
+- Github: [Julian Belmonte](https://github.com/jucora)
+- Twitter: [@Julian Belmonte](https://www.twitter.com/JulianBelmonte)
+- Linkedin: [Julian Belmonte](https://www.linkedin.com/in/julianbel)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## :pencil: Main Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This test consists of developing an API with Ruby on Rails to send registration information to emails using Mailchimp as the Email Service Provider.
 
-### `yarn test`
+The use of Dockerfile / Docker-compose was implemented to be able to run it locally.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This application connects to an API developed in Ruby on Rails, which can be found at the following link:[Email Subscriber API](https://github.com/jucora/email-api)
 
-### `yarn build`
+## How to install the App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Please clone the repository by running the next comand in your machine:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<pre><code>git clone https://github.com/jucora/email-app.git</code></pre>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Get into the folder of the project by running the next command:
 
-### `yarn eject`
+<pre><code>cd email-app</code></pre>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Next, run the next command to install all project dependencies:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   For Yarn: <pre><code>yarn install</code></pre>
+   For npm: <pre><code>npm install</code></pre>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Start your local server by running the next command:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   For Yarn: <pre><code>yarn start -p 3001</code></pre>
+   For npm: <pre><code>npm start -p 3001</code></pre>
 
-## Learn More
+Note: you can select another port if you wish. Just keep in mind that it has to be a different port from the API port.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## How to create a Docker image to be run locally
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Make sure you are located in the root of the project and run the next command to generate the Docker images needed:
 
-### Code Splitting
+<pre><code>docker-compose up -d</code></pre>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. You should see a similar output like the next one:
 
-### Analyzing the Bundle Size
+<pre><code>Creating rails-docker_database_1 ... done</code></pre>
+<pre><code>Creating rails-docker_redis_1    ... done</code></pre>
+<pre><code>Creating rails-docker_app_1      ... done</code></pre>
+<pre><code>Creating rails-docker_sidekiq_1  ... done</code></pre>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. You can also check the current processes by running the next command:
 
-### Making a Progressive Web App
+<pre><code>docker-compose logs</code></pre>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. You can run the next command to make sure all containers are running:
 
-### Advanced Configuration
+<pre><code>docker-compose ps</code></pre>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. You should see a similar output like the next one:
 
-### Deployment
+## Name Command State Ports
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+rails-docker_app_1 ./entrypoints/docker-resta ... Up 0.0.0.0:3000->3000/tcp
+rails-docker_database_1 docker-entrypoint.sh postgres Up 5432/tcp  
+rails-docker_redis_1 docker-entrypoint.sh redis ... Up 6379/tcp  
+rails-docker_sidekiq_1 ./entrypoints/sidekiq-entr ... Up
 
-### `yarn build` fails to minify
+Note: make sure that each container states is UP.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. Run the next in your browser, and you are good to go:
+
+<pre><code>localhost:3000</code></pre>
+
+## :computer: Library, Languages and technologies
+
+- React
+- React-DOM
+- JSX
+- SCSS
+- Node.js
+- npm
+- Javascript
+
+## Report Issues
+
+Please feel free to make a contribution, report any issue, feature request or provide any feedback. Click [here](https://github.com/jucora/email-app/issues)
+
+## Support
+
+Feel free to drop a like, that would support me a lot.
